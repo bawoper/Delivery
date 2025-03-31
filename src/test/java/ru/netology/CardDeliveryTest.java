@@ -1,6 +1,7 @@
 package ru.netology;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.apache.commons.exec.CommandLine;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,9 @@ public class CardDeliveryTest {
 
     @Test
     public void checkRegistration() {
+        Configuration.headless = true;
         Selenide.open("http://localhost:9999");
+       
         $("[data-test-id='city'] input").setValue("Москва");
         String planingDate = generateDate(4, "dd.MM.yyyy");
         $("[data-test-id='date'] input").press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
